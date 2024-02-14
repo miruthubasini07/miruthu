@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form th:action="@{/s/savedetails}"  th:object="${Policy}" method="post">
+
+    Status <input type="text" name="s" th:text="${Policy.status}"><br>
+    policyId: <input type="text" th:field="${Policy.id}"><br>
+    policyHolderName: <input type="text" th:field="${Policy.policyHolderName}"><br>
+    addressLine 1 :<input type="text" th:field="${Policy.address1}"><br>
+    addressLine 2 :<input type="text" th:field="${Policy.getAddress2}"><br>
+    <br>
+    SELECT STATE:
+
+    <select id="state" name="selectredState[]">
+        <option th:each="state : ${states}" th:value="${state.getId()}" th:text="${state.getStateName()}"></option>
+    </select>
+    <br>
+    <br>
+    SELECT COVERAGE:
+    <select id="Coverage" name="selectredCoverage[]" multiple="multiple">
+        <option th:each="cover : ${coverage}" th:value="${cover.getId()}" th:text="${cover.getCoverageName()}"></option>
+    </select>
+    <br>
+    <button type="submit">Save</button>
+
+</form>
+</body>
+</html>
